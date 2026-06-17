@@ -1,0 +1,249 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-chocolate: var(--chocolate);
+  --color-cream: var(--cream);
+  --color-taupe: var(--taupe);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand tokens */
+  --chocolate: oklch(0.28 0.04 50);     /* #3D2314 */
+  --cream: oklch(0.95 0.018 80);        /* #F3ECE2 */
+  --taupe: oklch(0.78 0.025 70);        /* #C5B5A5 */
+  --gold: oklch(0.74 0.10 80);          /* #C9A15B */
+  --gold-soft: oklch(0.86 0.06 85);
+  --ink: oklch(0.22 0.03 50);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.97 0.012 80);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--chocolate);
+  --primary-foreground: var(--cream);
+  --secondary: oklch(0.92 0.02 75);
+  --secondary-foreground: var(--chocolate);
+  --muted: oklch(0.91 0.015 75);
+  --muted-foreground: oklch(0.45 0.02 50);
+  --accent: var(--gold);
+  --accent-foreground: var(--chocolate);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.85 0.02 70);
+  --input: oklch(0.88 0.015 70);
+  --ring: var(--gold);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Custom utilities */
+@utility gold-divider {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  &::before, &::after {
+    content: "";
+    height: 1px;
+    width: 2.5rem;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+}
+
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: var(--chocolate);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--gold) 50%, transparent);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -10px color-mix(in oklab, var(--gold) 60%, transparent);
+  }
+}
+
+@utility btn-outline-choc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.7rem;
+  border: 1px solid var(--chocolate);
+  color: var(--chocolate);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  &:hover {
+    background: var(--chocolate);
+    color: var(--cream);
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+@utility grain-overlay {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(61,35,20,0.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@utility text-shimmer {
+  background: linear-gradient(90deg, var(--chocolate) 0%, var(--gold) 50%, var(--chocolate) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.15) translate(-2%, -2%); }
+}
+@utility ken-burns { animation: ken-burns 18s ease-in-out infinite alternate; }
+
+@keyframes ss-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@utility animate-slide-in-right {
+  animation: ss-slide-in-right 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility shadow-soft {
+  box-shadow: 0 10px 30px -12px oklch(0.28 0.04 50 / 0.18);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility offer-card {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px -20px oklch(0.28 0.04 50 / 0.25);
+  }
+}
+
+@utility reel-card {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 50px -20px oklch(0.28 0.04 50 / 0.25);
+  }
+}
