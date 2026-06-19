@@ -1,7 +1,39 @@
 {
-  "buildCommand": "npm run build:vercel",
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/hair",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/skin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bridal-makeup",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/gallery",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
